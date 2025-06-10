@@ -3,7 +3,6 @@ My first application
 """
 
 import toga
-from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
 
@@ -33,8 +32,14 @@ class Viktor(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
-    def say_hello(self, widgted):
-        print(f"Hello, {self.name_input.value}")
+    async def say_hello(self, widgted):
+        await self.main_window.dialog(
+            toga.InfoDialog(
+                f"Hello, {self.name_input.value}",
+                "hi There",
+            )
+        )
+
 
 def main():
     return Viktor()
